@@ -6,10 +6,10 @@ metadata:
 spec:
   selector:
     app: nginx
+  type: NodePort
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 30001
-  type: NodePort
+      port: 80          # Service port (ClusterIP access)
+      targetPort: 80     # Container port
+      nodePort: 30001    # Fixed NodePort
 
