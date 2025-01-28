@@ -1,12 +1,14 @@
 ## Requirement/My environement
-A. Controller machine/laptop 
-    - Install ansible
-    - Make passwordless ssh to all master node
-    - Make passwordless ssh to all worker node
+A. Controller machine/laptop   
+- Install ansible
+- Make passwordless ssh to all master node
+- Make passwordless ssh to all worker node
+
 B. One Master node
-    - SPEC: hostname: m1, IP: 192.168.119.104, User: root
+- hostname: m1, IP: 192.168.119.104, User: root
 C. One Worker node
-    - SPEC: hostname: m1, IP: 192.168.119.104, User: root
+- hostname: m1, IP: 192.168.119.104, User: root  
+
 D. Update hosts file as oer your master and worker nodes details
 
 
@@ -58,8 +60,7 @@ $ htpasswd -bnBC 10 "" "admin" | tr -d ':\n'
 
 $ kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "<HASH>"}}
 ```
-
-## 
+## Adding ssh keys for private repos
 ```
  kubectl create secret generic argocd-ssh-key --from-file=ssh-privatekey=/home/pawank/.ssh id_ed25519 -n argocd
 
