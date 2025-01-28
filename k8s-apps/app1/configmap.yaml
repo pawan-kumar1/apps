@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: index-html
-  namespace: default
+  namespace: app1
 data:
   index.html: |
     <html>
