@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index-html
+  namespace: default
+data:
+  index.html: |
+    <html>
+      <head><title>My Website</title></head>
+      <body><h1>Hello, ArgoCD!</h1></body>
+    </html>
+
