@@ -59,7 +59,7 @@ http://localhost:8080
 ```
 $ htpasswd -bnBC 10 "" "admin" | tr -d ':\n'
 
-$ kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "<HASH>"}}
+$ kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "<HASH>"}}'
 ```
 
 ## 
