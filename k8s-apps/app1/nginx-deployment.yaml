@@ -25,5 +25,5 @@ spec:
       volumes:
         - name: local-html
           hostPath:
-            path: ./index.html  # Change this to your local file path
+            path: k8s-apps/app1/index.html  # Change this to your local file path
             type: File
