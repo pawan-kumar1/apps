@@ -19,11 +19,11 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: index-html
+            - name: local-html
               mountPath: /usr/share/nginx/html/index.html
               subPath: index.html
       volumes:
-        - name: index-html
-          configMap:
-            name: index-html
-
+        - name: local-html
+          hostPath:
+            path: ./index.html  # Change this to your local file path
+            type: File
