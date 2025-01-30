@@ -20,10 +20,10 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: git-repo
-              mountPath: /usr/share/nginx/html  # Mounting the repo contents at the Nginx expected location
+              mountPath: /usr/share/nginx/html  # Mount the entire repo contents here
             - name: app1-index
-              mountPath: /usr/share/nginx/html/index.html
-              subPath: /tmp/git/apps/k8s-apps/app1/index.html  # Mounting the specific index.html for app1
+              mountPath: /usr/share/nginx/html/index.html  # Mount the specific index.html from app1
+              subPath: index.html  # Mount the specific file (not the whole directory)
         - name: git-sync
           image: k8s.gcr.io/git-sync:v3.0.0
           env:
@@ -32,12 +32,12 @@ spec:
             - name: GIT_SYNC_BRANCH
               value: "b1"
             - name: GIT_SYNC_DEST
-              value: "/mnt/git"  # Directory where git-sync will place the repo
+              value: "/mnt/git"  # Directory where git-sync will clone the repo
           volumeMounts:
             - name: git-repo
-              mountPath: /mnt/git  # Syncing the repo content to this location
+              mountPath: /mnt/git  # Mount the cloned repo here
       volumes:
         - name: git-repo
-          emptyDir: {}  # Temporary storage for syncing the repo
+          emptyDir: {}  # Temporary storage for the repo files
         - name: app1-index
-          emptyDir: {}  # Temporary storage for syncing the app1 index.html file
+          emptyDir: {}  # Temporary storage for app1/index.html
