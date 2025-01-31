@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: local-pvc
-  namespace: ns-localstorage  # Ensure this matches your namespace
+  namespace: myapps  # Ensure this matches your namespace
 spec:
   accessModes:
     - ReadWriteOnce
