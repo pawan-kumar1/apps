@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: myapps
+  namespace: ns-localstorage
 spec:
   replicas: 1
   selector:
@@ -19,11 +19,10 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: index-html
-              mountPath: /usr/share/nginx/html/index.html
-              subPath: index.html
+            - name: local-storage
+              mountPath: /usr/share/nginx/html  # Mount the local storage to this path
       volumes:
-        - name: index-html
-          configMap:
-            name: index-html
+        - name: local-storage
+          persistentVolumeClaim:
+            claimName: local-pvc
 
