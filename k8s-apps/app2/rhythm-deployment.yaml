@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rhythm-deployment
+  namespace: myapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rhythmapp
+  template:
+    metadata:
+      labels:
+        app: rhythmapp
+    spec:
+      containers:
+        - name: rhythmapp
+          image: pawan1/u16_apache2_php5:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: local-storage
+              mountPath: /usr/share/nginx/html  # Mount the local storage to this path
+      volumes:
+        - name: local-storage
+          persistentVolumeClaim:
+            claimName: local-pvc
+
